@@ -1,0 +1,32 @@
+{
+  "name": "BackboneApp",
+  "version": "1.0.0",
+  "description": "Playing with BackboneJS",
+  "main": "index.js",
+  "author": "paulnawat",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --open"
+  },
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "jointjs": "^2.0.1",
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "v4.0.0-alpha.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.8.3",
+    "postcss-loader": "^2.1.3",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}
