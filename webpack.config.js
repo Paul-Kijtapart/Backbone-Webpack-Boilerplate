@@ -10,12 +10,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
-});
-
 module.exports = {
     /**
      * - one entry point per HTML page
@@ -41,31 +35,27 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: extractSass.extract({
-                    fallback: "style-loader", // should be in the fallback only OR ERROR
-                    use: [
-                        {
-                            loader: "css-loader" // translates CSS into CommonJS
-                        }, {
-                            loader: 'postcss-loader' // autoprefixer
-                        }
-                    ]
-                })
+                use: [
+                    {
+                        loader: 'style-loader', // inject CSS to page
+                    },
+                    {
+                        loader: "css-loader" // translates CSS into CommonJS
+                    }
+                ]
             },
             {
-                test: /\.scss$/,
-                use: extractSass.extract({
-                    fallback: "style-loader", // should be in the fallback only OR ERROR
-                    use: [
-                        {
-                            loader: "css-loader" // translates CSS into CommonJS
-                        }, {
-                            loader: 'postcss-loader' // autoprefixer
-                        }, {
-                            loader: "sass-loader" // compiles Sass to CSS
-                        }
-                    ]
-                })
+                test: /\.(scss)$/,
+                use: [
+                    {
+                        loader: 'style-loader', // inject CSS to page
+                    },
+                    {
+                        loader: "css-loader" // translates CSS into CommonJS
+                    }, {
+                        loader: "sass-loader" // compiles Sass to CSS
+                    }
+                ]
             }
         ]
     },
@@ -79,7 +69,6 @@ module.exports = {
         hints: false
     },
     plugins: [
-        extractSass,
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Development',
